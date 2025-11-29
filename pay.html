@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support The Broke Dev 💰</title>
+  <meta name="description" content="Send any amount (min $1) in USDT (BEP-20) to join our exclusive Discord community.">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Space Grotesk"', 'sans-serif'] },
+          colors: { banana: '#eab308' }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f0f1b, #1a1a2e);
+      color: white;
+    }
+    .glow { text-shadow: 0 0 12px rgba(234, 179, 8, 0.8); }
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #eab308;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center py-6 px-4">
+  <div class="max-w-md w-full space-y-8">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold glow">💰 Support My Journey</h1>
+      <p class="mt-4 text-gray-300 text-sm leading-relaxed">
+        Send <strong class="text-banana">any amount of USDT (BEP-20)</strong> (min $1) to unlock:
+        <br><br>
+        ✅ Access to our <strong>private Discord channel</strong><br>
+        ✅ Direct chats with me — the broke dev behind <strong>EchoChain</strong><br>
+        ✅ A community of <strong>organic crypto warriors</strong><br>
+        <br>
+        <em class="text-yellow-400">“Rather than wasting $3 on coffee, fuel a real dream.”</em>
+      </p>
+    </div>
+
+    <div class="bg-gray-900/60 p-4 rounded-xl">
+      <p class="text-gray-400 text-sm mb-2">Send USDT (BEP-20) to:</p>
+      <div class="flex items-center justify-between bg-gray-800 p-3 rounded-lg font-mono text-sm break-all">
+        <span id="wallet-address" class="text-banana">0x2a2a95e074713e30f98fa26b10a87b5ab2defd9b</span>
+        <button id="copy-btn" class="ml-2 bg-banana text-gray-900 px-2 py-1 rounded font-bold text-xs">Copy</button>
+      </div>
+      <div class="mt-4 flex items-start gap-1.5 text-xs text-yellow-400">
+        <svg class="w-3.5 h-3.5 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/>
+        </svg>
+        <span><strong>Must use BSC network.</strong> Do not send via Ethereum (ERC-20)!</span>
+      </div>
+    </div>
+
+    <div class="bg-gray-900/60 p-4 rounded-xl">
+      <h2 class="text-xl font-bold mb-2 text-banana">Verify Your Support</h2>
+      <p class="text-gray-400 text-xs mb-3">Paste your BSCScan TX hash. Even $1 unlocks full access!</p>
+      <input 
+        type="text" 
+        id="tx-hash" 
+        placeholder="Paste BSCScan TX hash (e.g. 0x...)" 
+        class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 mb-3"
+      />
+      <button id="verify-btn" class="w-full py-3 bg-banana hover:bg-yellow-600 text-gray-900 font-bold rounded-lg">
+        🔍 Verify Transaction
+      </button>
+      <div id="verify-result" class="mt-3 min-h-[20px] text-sm"></div>
+    </div>
+
+    <button onclick="resetAndRoast()" class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg">
+      🚪 EXIT (You’ll be roasted again)
+    </button>
+
+    <p class="text-center text-xs text-gray-500">
+      We do not collect personal data. Payments are manual. Not financial advice. Meme only.
+    </p>
+  </div>
+
+  <script>
+    const WALLET = "0x2a2a95e074713e30f98fa26b10a87b5ab2defd9b";
+    const USDT_BEP20 = "0x55d398326f99059fF775485246999027B3197955";
+    const MIN_AMOUNT = 1n * 1000000000000000000n; // 1 USDT
+
+    function resetAndRoast() {
+      localStorage.setItem('roastCount', '0');
+      window.location.href = 'roast.html';
+    }
+
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      navigator.clipboard.writeText(WALLET).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = '✅ Copied!';
+        btn.classList.add('bg-green-500', 'text-white');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('bg-green-500', 'text-white');
+        }, 2000);
+      }).catch(() => alert('Failed to copy.'));
+    });
+
+    document.getElementById('verify-btn').addEventListener('click', async () => {
+      const txHash = document.getElementById('tx-hash').value.trim();
+      const resDiv = document.getElementById('verify-result');
+      const btn = document.getElementById('verify-btn');
+      if (!txHash) return resDiv.innerHTML = '<span class="text-red-400">Please enter a transaction hash.</span>';
+
+      resDiv.innerHTML = '<span class="text-yellow-400 flex items-center gap-2"><div class="loading-spinner"></div> Verifying...</span>';
+      btn.disabled = true;
+      btn.textContent = '🔍 Verifying...';
+
+      try {
+        const url = `https://api.bscscan.com/api?module=proxy&action=eth_getTransactionByHash&txhash=${txHash}`;
+        const resp = await fetch(url);
+        const data = await resp.json();
+        const tx = data.result;
+
+        if (!tx || tx.hash?.toLowerCase() !== txHash.toLowerCase()) {
+          resDiv.innerHTML = '<span class="text-red-400">❌ Transaction not found on BSC.</span>';
+        } else if (tx.to?.toLowerCase() === USDT_BEP20.toLowerCase()) {
+          const input = tx.input;
+          if (input.startsWith('0xa9059cbb')) {
+            const to = '0x' + input.slice(10, 74).replace(/^0+/, '');
+            const amt = BigInt('0x' + input.slice(74));
+            if (to.toLowerCase() === WALLET.toLowerCase() && amt >= MIN_AMOUNT) {
+              resDiv.innerHTML = '<span class="text-green-400 font-bold">✅ Verified! DM your Discord username for private channel access!</span>';
+            } else if (amt >= MIN_AMOUNT) {
+              resDiv.innerHTML = '<span class="text-red-400">❌ Sent to wrong address.</span>';
+            } else {
+              resDiv.innerHTML = '<span class="text-red-400">❌ Amount must be at least 1 USDT.</span>';
+            }
+          } else {
+            resDiv.innerHTML = '<span class="text-red-400">❌ Invalid USDT transfer.</span>';
+          }
+        } else if (tx.to?.toLowerCase() === WALLET.toLowerCase() && BigInt(tx.value || 0) > 0n) {
+          resDiv.innerHTML = '<span class="text-yellow-400">⚠️ You sent BNB, not USDT. Please send USDT (BEP-20).</span>';
+        } else {
+          resDiv.innerHTML = '<span class="text-red-400">❌ Not a valid payment to our wallet.</span>';
+        }
+      } catch (e) {
+        resDiv.innerHTML = '<span class="text-red-400">❌ Network error. Try again.</span>';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🔍 Verify Transaction';
+      }
+    });
+  </script>
+</body>
+</html>
