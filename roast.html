@@ -42,7 +42,9 @@
       text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
-    .glow { text-shadow: 0 0 12px rgba(234, 179, 8, 0.8); }
+    .glow {
+      text-shadow: 0 0 12px rgba(234, 179, 8, 0.8);
+    }
   </style>
 </head>
 <body>
@@ -73,7 +75,7 @@
       <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-red-400 mb-4 glow">${randomRoast.title}</h1>
       <p class="text-gray-300 text-sm sm:text-base leading-relaxed">${randomRoast.message}</p>
       <p class="text-gray-500 text-xs mt-6">P.S. Roast #${roastCount} of 5. You’re in deep.</p>
-      <button onclick="window.location.href='roast.html'" class="mt-5 inline-block px-5 py-2.5 bg-banana text-gray-900 font-bold rounded-full hover:bg-yellow-600 transition text-sm">
+      <button onclick="window.location.href='roast.html?t=' + Date.now()" class="mt-5 inline-block px-5 py-2.5 bg-banana text-gray-900 font-bold rounded-full hover:bg-yellow-600 transition text-sm">
         👉 Go Back & Support (Roast Me Again)
       </button>
     `;
