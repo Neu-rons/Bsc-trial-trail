@@ -4,11 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Roasted Again 😵‍💫</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
       min-height: 100vh;
       background: linear-gradient(135deg, #1a1a2e, #0f0f1b);
       display: flex;
@@ -17,6 +16,7 @@
       padding: 1.5rem;
       color: white;
       font-family: 'Space Grotesk', sans-serif;
+      position: relative;
     }
     body::before {
       content: '';
@@ -30,7 +30,9 @@
       animation: rotate 25s linear infinite;
       z-index: -1;
     }
-    @keyframes rotate { to { transform: rotate(360deg); } }
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
     .roast-card {
       background: rgba(30, 30, 46, 0.7);
       backdrop-filter: blur(10px);
@@ -42,8 +44,42 @@
       text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
-    .glow {
+    .emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ef4444;
+      margin-bottom: 1rem;
       text-shadow: 0 0 12px rgba(234, 179, 8, 0.8);
+    }
+    .message {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: #d1d5db;
+      margin-bottom: 1.25rem;
+    }
+    .ps {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.625rem 1.25rem;
+      background: #eab308;
+      color: #0f0f1b;
+      font-weight: 700;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #d97706;
     }
   </style>
 </head>
@@ -52,17 +88,13 @@
 
   <script>
     try {
-      // Try to get roast count from localStorage
       let roastCount = 0;
       try {
         roastCount = parseInt(localStorage.getItem('roastCount') || '0');
-      } catch (storageError) {
-        console.warn("localStorage access failed:", storageError);
-        // Fallback: start from 0
-        roastCount = 0;
+      } catch (e) {
+        console.warn("localStorage error:", e);
       }
 
-      // Safety check
       if (roastCount > 5) {
         window.location.href = 'nothing.html';
         return;
@@ -82,23 +114,21 @@
       const randomRoast = roasts[Math.floor(Math.random() * roasts.length)];
 
       document.getElementById('roast-content').innerHTML = `
-        <div class="text-6xl mb-3 animate-bounce">${randomRoast.emoji}</div>
-        <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-red-400 mb-4 glow">${randomRoast.title}</h1>
-        <p class="text-gray-300 text-sm sm:text-base leading-relaxed">${randomRoast.message}</p>
-        <p class="text-gray-500 text-xs mt-6">P.S. Roast #${roastCount} of 5. You’re in deep.</p>
-        <button onclick="window.location.href='roast.html?t=' + Date.now()" class="mt-5 inline-block px-5 py-2.5 bg-banana text-gray-900 font-bold rounded-full hover:bg-yellow-600 transition text-sm">
+        <div class="emoji">${randomRoast.emoji}</div>
+        <div class="title">${randomRoast.title}</div>
+        <div class="message">${randomRoast.message}</div>
+        <div class="ps">P.S. Roast #${roastCount} of 5. You’re in deep.</div>
+        <button class="btn" onclick="window.location.href='roast.html?t=' + Date.now()">
           👉 Go Back & Support (Roast Me Again)
         </button>
       `;
     } catch (error) {
-      console.error("Roast page error:", error);
+      console.error("Roast error:", error);
       document.getElementById('roast-content').innerHTML = `
-        <div class="text-5xl mb-4">💥</div>
-        <h1 class="text-xl font-bold text-red-400 mb-4">Oops!</h1>
-        <p class="text-gray-300 text-sm">Something went wrong. Try refreshing or clearing your cache.</p>
-        <button onclick="location.reload()" class="mt-5 px-5 py-2.5 bg-banana text-gray-900 font-bold rounded-full hover:bg-yellow-600 transition">
-          🔄 Reload Page
-        </button>
+        <div class="emoji">💥</div>
+        <div class="title">Oops!</div>
+        <div class="message">Something went wrong. Try refreshing.</div>
+        <button class="btn" onclick="location.reload()">🔄 Reload</button>
       `;
     }
   </script>
