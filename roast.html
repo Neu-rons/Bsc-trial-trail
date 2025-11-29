@@ -44,29 +44,10 @@
       text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
-    .emoji {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-    .title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #ef4444;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 12px rgba(234, 179, 8, 0.8);
-    }
-    .message {
-      font-size: 0.875rem;
-      line-height: 1.5;
-      color: #d1d5db;
-      margin-bottom: 1.25rem;
-    }
-    .ps {
-      font-size: 0.75rem;
-      color: #9ca3af;
-      margin-top: 1rem;
-    }
+    .emoji { font-size: 4rem; margin-bottom: 1rem; }
+    .title { font-size: 1.25rem; font-weight: 700; color: #ef4444; margin-bottom: 1rem; text-shadow: 0 0 12px rgba(234, 179, 8, 0.8); }
+    .message { font-size: 0.875rem; line-height: 1.5; color: #d1d5db; margin-bottom: 1.25rem; }
+    .ps { font-size: 0.75rem; color: #9ca3af; margin-top: 1rem; }
     .btn {
       display: inline-block;
       margin-top: 1.5rem;
@@ -78,28 +59,46 @@
       text-decoration: none;
       transition: background 0.2s;
     }
-    .btn:hover {
-      background: #d97706;
-    }
+    .btn:hover { background: #d97706; }
   </style>
 </head>
 <body>
   <div class="roast-card" id="roast-content">Loading...</div>
 
   <script>
-    try {
-      let roastCount = 0;
+    // --- SAFE LOCALSTORAGE HANDLER ---
+    function safeGetItem(key, fallback = '0') {
       try {
-        roastCount = parseInt(localStorage.getItem('roastCount') || '0');
-      } catch (e) {
-        console.warn("localStorage error:", e);
+        const value = localStorage.getItem(key);
+        return value === null ? fallback : value;
+      } catch (err) {
+        console.warn('localStorage unavailable:', err);
+        return fallback;
       }
+    }
 
-      if (roastCount > 5) {
+    function safeSetItem(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch (err) {
+        console.warn('localStorage set failed:', err);
+      }
+    }
+
+    // --- MAIN LOGIC ---
+    try {
+      // Get and increment roast count safely
+      const currentCount = parseInt(safeGetItem('roastCount'), 10) || 0;
+      const newCount = currentCount + 1;
+      safeSetItem('roastCount', String(newCount));
+
+      // Redirect to nothing.html after 5 roasts
+      if (newCount > 5) {
         window.location.href = 'nothing.html';
         return;
       }
 
+      // Roast data
       const roasts = [
         { emoji: "👻", title: "Ghost in the Machine", message: "Ghosting the donate button? You're broker than my bug-riddled beta—haunting free trials like a pro. Still begging for password-protected hotspots at the library?" },
         { emoji: "🦝", title: "Raccoon in the Recycle Bin", message: "Raiding the site for scraps without tossing a bone? You're the broke raccoon rummaging my recycle bin of ideas—adorably audacious." },
@@ -113,21 +112,22 @@
 
       const randomRoast = roasts[Math.floor(Math.random() * roasts.length)];
 
+      // Update DOM
       document.getElementById('roast-content').innerHTML = `
         <div class="emoji">${randomRoast.emoji}</div>
         <div class="title">${randomRoast.title}</div>
         <div class="message">${randomRoast.message}</div>
-        <div class="ps">P.S. Roast #${roastCount} of 5. You’re in deep.</div>
+        <div class="ps">P.S. Roast #${newCount} of 5. You’re in deep.</div>
         <button class="btn" onclick="window.location.href='roast.html?t=' + Date.now()">
           👉 Go Back & Support (Roast Me Again)
         </button>
       `;
     } catch (error) {
-      console.error("Roast error:", error);
+      console.error('Roast page failed:', error);
       document.getElementById('roast-content').innerHTML = `
         <div class="emoji">💥</div>
         <div class="title">Oops!</div>
-        <div class="message">Something went wrong. Try refreshing.</div>
+        <div class="message">Something went wrong. Try refreshing or using a different browser.</div>
         <button class="btn" onclick="location.reload()">🔄 Reload</button>
       `;
     }
