@@ -9,11 +9,11 @@
   <!-- Open Graph / Twitter -->
   <meta property="og:title" content="The Broke Dev" />
   <meta property="og:description" content="Hey there, fellow crypto dreamer—or just someone with a soft spot for underdog stories. I'm [Your Name], a bootstrapped dev who's poured my soul into crafting EchoChain." />
-  <meta property="og:image" content="https://gamebandit.netlify.app/og-banner.jpg" />
-  <meta property="og:url" content="https://gamebandit.netlify.app" />
+  <meta property="og:image" content="https://brokedeveloper.netlify.app/og-banner.jpg" />
+  <meta property="og:url" content="https://brokedeveloper.netlify.app" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Tailwind -->
+  <!-- Tailwind CSS (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <script>
@@ -26,6 +26,7 @@
       }
     }
   </script>
+
   <style>
     body {
       margin: 0;
@@ -50,17 +51,30 @@
       animation: rotate 30s linear infinite;
       z-index: -1;
     }
-    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .card { background: rgba(30, 30, 46, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 1.5rem; }
-    .pulse { animation: pulse 2s infinite; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(234, 179, 8, 0); } 100% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); } }
-    .glow { text-shadow: 0 0 12px rgba(234, 179, 8, 0.8); }
-    .loading-spinner { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #eab308; animation: spin 1s ease-in-out infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .glow {
+      text-shadow: 0 0 12px rgba(234, 179, 8, 0.8);
+    }
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #eab308;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body class="flex flex-col items-center justify-center py-6 px-4">
   <div class="max-w-2xl w-full space-y-8 z-10">
+    <!-- Hero -->
     <div class="text-center">
       <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold glow">👨‍💻 The Broke Dev</h1>
       <p class="mt-4 text-gray-300 text-base sm:text-lg leading-relaxed">
@@ -70,18 +84,20 @@
       </p>
     </div>
 
+    <!-- Social Share -->
     <div class="text-center">
       <p class="text-gray-500 text-xs sm:text-sm mb-2">Share this journey:</p>
       <div class="flex justify-center gap-3">
-        <a href="https://twitter.com/intent/tweet?text=Just%20found%20The%20Broke%20Dev%20—%20a%20real%20dev%20building%20EchoChain%20with%20no%20VC%2C%20just%20code%20and%20dreams.%20Support%20the%20underdog!%20%F0%9F%92%BB&url=https://gamebandit.netlify.app" target="_blank" rel="noopener" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.91 21.75H1.66l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <a href="https://twitter.com/intent/tweet?text=Just%20found%20The%20Broke%20Dev%20—%20a%20real%20dev%20building%20EchoChain%20with%20no%20VC%2C%20just%20code%20and%20dreams.%20Support%20the%20underdog!%20%F0%9F%92%BB&url=https://brokedeveloper.netlify.app" target="_blank" rel="noopener" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.91 21.75H1.66l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a href="https://t.me/share/url?url=https://gamebandit.netlify.app&text=👨‍💻%20The%20Broke%20Dev%20is%20live!%20Building%20EchoChain%20with%20zero%20funding%2C%20all%20heart.%20Join%20the%20ride!" target="_blank" rel="noopener" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.683-.533.842-1.146.52l-3.15-2.334-1.48-3.431 5.497 4.051c-.138.199-2.976 2.222-2.976 2.222-.087.062-.183.094-.28.094-.197 0-.296-.126-.296-.126l-.985-3.76 5.244-4.242c.212-.17.447-.068.447-.068z"/></svg>
+        <a href="https://t.me/share/url?url=https://brokedeveloper.netlify.app&text=👨‍💻%20The%20Broke%20Dev%20is%20live!%20Building%20EchoChain%20with%20zero%20funding%2C%20all%20heart.%20Join%20the%20ride!" target="_blank" rel="noopener" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.683-.533.842-1.146.52l-3.15-2.334-1.48-3.431 5.497 4.051c-.138.199-2.976 2.222-2.976 2.222-.087.062-.183.094-.28.094-.197 0-.296-.126-.296-.126l-.985-3.76 5.244-4.242c.212-.17.447-.068.447-.068z"/></svg>
         </a>
       </div>
     </div>
 
+    <!-- CTA Buttons -->
     <div class="flex flex-col sm:flex-row gap-3">
       <button id="pay-btn" class="flex-1 py-3 sm:py-4 bg-banana hover:bg-yellow-600 text-gray-900 font-bold rounded-xl transition pulse text-sm sm:text-base">
         💰 Support My Journey ($10)
@@ -91,20 +107,23 @@
       </button>
     </div>
 
+    <!-- Hidden Payment Section -->
     <div id="payment-section" class="hidden space-y-6">
-      <div class="card">
+      <!-- Wallet Card -->
+      <div class="bg-gray-900/60 p-3 rounded-lg">
         <p class="text-gray-400 text-xs sm:text-sm mb-2">Send <span class="text-banana font-bold">10 USDT (BEP-20)</span> to:</p>
         <div class="flex items-center justify-between bg-gray-900/60 p-3 rounded-lg font-mono text-sm break-all">
           <span id="wallet-address" class="text-banana">0x2a2a95e074713e30f98fa26b10a87b5ab2defd9b</span>
           <button id="copy-btn" class="ml-2 bg-banana text-gray-900 px-2 py-1 rounded font-bold text-xs">Copy</button>
         </div>
         <div class="mt-2 flex items-start gap-1 text-xs text-yellow-400">
-          <svg class="w-3.5 h-3.5 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/></svg>
+          <svg class="w-3.5 h-3.5 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
           Must use <strong>BSC network</strong>. Do not send via Ethereum (ERC-20) or other chains!
         </div>
       </div>
 
-      <div class="card">
+      <!-- Verify Card -->
+      <div class="bg-gray-900/60 p-3 rounded-lg">
         <h2 class="text-lg sm:text-xl font-bold mb-2 text-banana">Verify Your Support</h2>
         <input 
           type="text" 
@@ -118,22 +137,26 @@
         <div id="verify-result" class="mt-3 min-h-[20px] text-sm"></div>
       </div>
 
+      <!-- Privacy Notice -->
       <p class="text-center text-xs text-gray-500">
         We do not collect personal data. Payments are manual. Not financial advice. Meme only.
       </p>
     </div>
   </div>
 
+  <!-- Scripts -->
   <script>
     const WALLET = "0x2a2a95e074713e30f98fa26b10a87b5ab2defd9b";
     const USDT_BEP20 = "0x55d398326f99059fF775485246999027B3197955";
-    const REQUIRED_AMOUNT = 10n * 1000000000000000000n;
+    const REQUIRED_AMOUNT = 10n * 1000000000000000000n; // 10 USDT
 
+    // Show payment section
     document.getElementById('pay-btn').addEventListener('click', () => {
       document.getElementById('payment-section').classList.remove('hidden');
-      document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
+    // Copy wallet address with feedback
     document.getElementById('copy-btn').addEventListener('click', () => {
       navigator.clipboard.writeText(WALLET).then(() => {
         const btn = document.getElementById('copy-btn');
@@ -143,20 +166,29 @@
           btn.textContent = 'Copy';
           btn.classList.remove('bg-green-500', 'text-white');
         }, 2000);
-      }).catch(() => alert('Failed to copy.'));
+      }).catch(() => {
+        alert('Failed to copy. Please copy manually.');
+      });
     });
 
+    // Verify transaction
     document.getElementById('verify-btn').addEventListener('click', async () => {
       const txHash = document.getElementById('tx-hash').value.trim();
       const resDiv = document.getElementById('verify-result');
       const btn = document.getElementById('verify-btn');
-      if (!txHash) return resDiv.innerHTML = '<span class="text-red-400">Please enter a transaction hash.</span>';
 
+      if (!txHash) {
+        resDiv.innerHTML = '<span class="text-red-400">Please enter a transaction hash.</span>';
+        return;
+      }
+
+      // Loading state
       resDiv.innerHTML = '<span class="text-yellow-400 flex items-center gap-2"><div class="loading-spinner"></div> Verifying...</span>';
       btn.disabled = true;
       btn.textContent = '🔍 Verifying...';
 
       try {
+        // 🔧 FIXED: removed space before txhash=
         const url = `https://api.bscscan.com/api?module=proxy&action=eth_getTransactionByHash&txhash=${txHash}`;
         const resp = await fetch(url);
         const data = await resp.json();
@@ -171,6 +203,7 @@
             const amt = BigInt('0x' + input.slice(74));
             if (to.toLowerCase() === WALLET.toLowerCase() && amt >= REQUIRED_AMOUNT) {
               resDiv.innerHTML = '<span class="text-green-400 font-bold">✅ Verified! Thank you for supporting my dream. DM your Discord username for early access!</span>';
+              resDiv.scrollIntoView({ behavior: 'smooth' });
             } else if (amt >= REQUIRED_AMOUNT) {
               resDiv.innerHTML = '<span class="text-red-400">❌ Sent to wrong address.</span>';
             } else {
@@ -192,7 +225,7 @@
       }
     });
 
-    // 🔥 Simplified roast trigger: just count + redirect
+    // Roast Loop
     function showRandomRoast() {
       let roastCount = parseInt(localStorage.getItem('roastCount') || '0');
       if (roastCount >= 5) {
