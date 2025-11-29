@@ -3,17 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>You Missed It... 🍌</title>
-  <meta name="description" content="You skipped the Banana Bandit Gamble. Alpha chads are already farming.">
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="You Missed It... 🍌" />
-  <meta property="og:description" content="You skipped the Banana Bandit Gamble. Alpha chads are already farming." />
-  <meta property="og:image" content="https://gamebandit.netlify.app/og-banner.jpg" />
-  <meta property="og:url" content="https://gamebandit.netlify.app/roast.html" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Tailwind -->
+  <title>Roasted Again 😵‍💫</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -40,9 +30,7 @@
       animation: rotate 25s linear infinite;
       z-index: -1;
     }
-    @keyframes rotate {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes rotate { to { transform: rotate(360deg); } }
     .roast-card {
       background: rgba(30, 30, 46, 0.7);
       backdrop-filter: blur(10px);
@@ -54,23 +42,41 @@
       text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
+    .glow { text-shadow: 0 0 12px rgba(234, 179, 8, 0.8); }
   </style>
 </head>
 <body>
-  <div class="roast-card">
-    <div class="text-4xl sm:text-5xl mb-3">💔</div>
-    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-red-400 mb-3">You Skipped the Banana...</h1>
-    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-      While you hesitated...<br>
-      <strong>10 alpha chads</strong> just got the <span class="text-yellow-400">$BANDIT CA</span>.<br>
-      They’re already farming. You’re still reading this.
-    </p>
-    <p class="text-gray-500 text-xs mt-5 sm:mt-6">
-      P.S. This is your last warning.
-    </p>
-    <a href="index.html" class="mt-5 sm:mt-6 inline-block px-5 py-2.5 sm:px-6 sm:py-3 bg-banana text-gray-900 font-bold rounded-full hover:bg-yellow-600 transition text-sm sm:text-base">
-      👉 Go Back & Pay
-    </a>
-  </div>
+  <div class="roast-card" id="roast-content">Loading...</div>
+
+  <script>
+    let roastCount = parseInt(localStorage.getItem('roastCount') || '0');
+    if (roastCount > 5) {
+      window.location.href = 'nothing.html';
+      return;
+    }
+
+    const roasts = [
+      { emoji: "👻", title: "Ghost in the Machine", message: "Ghosting the donate button? You're broker than my bug-riddled beta—haunting free trials like a pro. Still begging for password-protected hotspots at the library?" },
+      { emoji: "🦝", title: "Raccoon in the Recycle Bin", message: "Raiding the site for scraps without tossing a bone? You're the broke raccoon rummaging my recycle bin of ideas—adorably audacious." },
+      { emoji: "🏃‍♂️", title: "Treadmill Titan", message: "Dodging that donate like a treadmill—impressive evasion for someone built like a blockchain bloat. You're porkier than my gas fees after a fork, hoarding snacks over sats." },
+      { emoji: "🎩", title: "Fluffy Failure", message: "Teasing the tip jar with tubby tactics? You're fluffier than a failed airdrop—big on browses, zero on bucks. Fatter than my feature backlog, scavenging signal scraps." },
+      { emoji: "🍩", title: "Cheat Day Champion", message: "Bypassing the buy like a cheat day—smooth move for a blubber boss. You're bulkier than my bloated repo, too stuffed for a single sat." },
+      { emoji: "🍎", title: "Gravity Denier", message: "Skipping the sats 'cause \"dev might flop\"? Peak dummy—it's like betting against gravity 'cause apples fall. Devs crash, debug, and dominate; you're the echo in the empty wallet club, googling \"missed opportunities.\"" },
+      { emoji: "🔗", title: "Dead-End Branch", message: "Forking off the fund? You're dumber than a smart contract with no audit—devs tumble, then terraform empires. You're the side-chain spectator, snickering at the stumble while missing the moonwalk back. \"Everyone knows devs rise,\" yet here you are, low-res lurking. Fork over a few bucks and fork-join the fun. Or stay the dead-end branch nobody forks." },
+      { emoji: "🚀", title: "Mud Muncher", message: "Grounding the grind 'cause \"dev could crater\"? Moronic math—fall today, fly tomorrow's fleet. You're the mouth-breather missing the memo, munching memes from the mud while risers rocket." }
+    ];
+
+    const randomRoast = roasts[Math.floor(Math.random() * roasts.length)];
+
+    document.getElementById('roast-content').innerHTML = `
+      <div class="text-6xl mb-3 animate-bounce">${randomRoast.emoji}</div>
+      <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-red-400 mb-4 glow">${randomRoast.title}</h1>
+      <p class="text-gray-300 text-sm sm:text-base leading-relaxed">${randomRoast.message}</p>
+      <p class="text-gray-500 text-xs mt-6">P.S. Roast #${roastCount} of 5. You’re in deep.</p>
+      <button onclick="window.location.href='roast.html'" class="mt-5 inline-block px-5 py-2.5 bg-banana text-gray-900 font-bold rounded-full hover:bg-yellow-600 transition text-sm">
+        👉 Go Back & Support (Roast Me Again)
+      </button>
+    `;
+  </script>
 </body>
 </html>

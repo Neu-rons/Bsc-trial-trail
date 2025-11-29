@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nothing to See Here</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f0f1b, #1a1a2e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      color: white;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .card {
+      background: rgba(30, 30, 46, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(234, 179, 8, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="text-5xl mb-4">🎭</div>
+    <h1 class="text-2xl font-bold text-yellow-400 mb-4">Congratulations!</h1>
+    <p class="text-gray-300 text-sm leading-relaxed">
+      You’ve officially survived 5 brutal roasts.<br>
+      No more jokes. No more loops.<br>
+      Just pure, unfiltered opportunity.
+    </p>
+    <p class="text-gray-500 text-xs mt-6">
+      P.S. The dev is still broke. But you already knew that.
+    </p>
+    <button onclick="window.location.href='index.html'" class="mt-6 px-6 py-3 bg-banana text-gray-900 font-bold rounded-full hover:bg-yellow-600 transition">
+      💰 Let’s Pay the Dev Already
+    </button>
+  </div>
+</body>
+</html>
