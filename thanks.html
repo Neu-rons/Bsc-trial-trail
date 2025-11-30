@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You! 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Space Grotesk"', 'sans-serif'] },
+          colors: { banana: '#eab308' }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f0f1b, #1a1a2e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      color: white;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .glow { text-shadow: 0 0 12px rgba(234, 179, 8, 0.8); }
+  </style>
+  <!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-kJTkFyNy_oH778XTnpBAm.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+
+</head>
+<body>
+  <div class="max-w-md w-full space-y-6 text-center">
+    <div class="text-5xl mb-4">🎉</div>
+    <h1 class="text-2xl font-bold glow">You’re In!</h1>
+    <p class="text-gray-300 text-sm">
+      You’ve officially joined the <strong>EchoChain alpha</strong> as an organic crypto warrior! 🚀<br><br>
+      <strong>Next step:</strong> DM your Discord username to <strong>@YourHandle</strong> for private channel access.
+    </p>
+    <a href="https://discord.com/users/YOUR_ID" class="mt-4 inline-block bg-banana px-4 py-2 rounded font-bold">
+      Open Discord
+    </a>
+
+    <!-- ✅ REFER A FRIEND (ONLY FOR PAYING USERS) -->
+    <div class="mt-8 p-4 bg-gray-900/60 rounded-lg">
+      <h3 class="text-yellow-400 font-bold mb-2">🔥 Love EchoChain? Share with a fellow warrior!</h3>
+      <p class="text-gray-400 text-xs mb-3">Only real supporters get to spread the dream.</p>
+      <div class="flex items-center gap-2 bg-gray-800 p-2 rounded">
+        <input 
+          type="text" 
+          id="share-link" 
+          value="https://brokedeveloper.netlify.app" 
+          readonly 
+          class="flex-1 bg-transparent text-white placeholder-gray-500 text-xs"
+        />
+        <button 
+          onclick="navigator.clipboard.writeText('https://brokedeveloper.netlify.app').then(() => {
+            const btn = document.getElementById('copy-share');
+            btn.textContent = '✅ Copied!';
+            btn.classList.add('bg-green-500', 'text-white');
+            setTimeout(() => {
+              btn.textContent = 'Copy';
+              btn.classList.remove('bg-green-500', 'text-white');
+            }, 2000);
+          })" 
+          id="copy-share" 
+          class="ml-1 bg-banana text-gray-900 px-2 py-1 rounded font-bold text-xs">
+          Copy
+        </button>
+      </div>
+      <p class="text-xs text-gray-500 mt-3">
+        Your friend will go through the same roast loop — but you know the secret: just pay $1 and join the tribe.
+      </p>
+    </div>
+
+    <p class="text-xs text-gray-500 mt-6">
+      We do not collect personal data. Payments are manual. .
+    </p>
+  </div>
+</body>
+</html>
